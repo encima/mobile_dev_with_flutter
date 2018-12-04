@@ -1,102 +1,49 @@
 ### Mobile Development with Flutter
-
+#### Step Two
 #### Dr. Chris Gwilliams
 #### Women++
 
 ---
 
-## What is Flutter?
+## Step One Review
 
-Flutter is a framework, developed by Google, that creates cross-platform mobile apps using their language: Dart.
-In short, this is a framework that allows you to create apps on both major platforms using a single codebased and the development benefits of the web, such as `Hot Reload`
+Open up the `ex_one.dart` file and take a look at the answers. Did you do anything differently?
 
----
-
-## Too Good Too Be True?
-
-It is. Flutter is a very new framework and Dart is a language with a lot of potential but is not yet a mainstream language.
-
-### So Why Learn for Beginners?
-
-While many larger companies have not yet heard of Flutter (or Dart), it is a good option for startups with not so much (wo)manpower.
-
-On top of this, Dart is not so different as a language, you will see similarities between Java and JavaScript.
-
-Finally, the tools are not specific. Want to edit the code? Use Android Studio. Knowing how to use the emulator and the IDE is a vital mobile development skill.
+Does anything not make sense? **Speak now or forever hold your bugs**
 
 ---
 
-## So, What Tools Do We Cover?
+## Step Two
 
-* Git
-* Flutter
-* Android Studio 
+But we have already made an app, I hear you cry. Well, now let's take a quick look at some classes before we get stuck into flutter.
 
----
+Open up `ex_two_classes.dart` and take a look at the class inside.
 
-## Learning Outcomes
-
-* Introduction to Dart
-* Introduction to Flutter
-* Introduction to Android Studio
-* Deploying on a mobile device/emulator
-* Apps:
-  * Widgets
-  * Screens and Transitions
-  * Storing data
-  * Notifications
-  * Connectivity
-* Publishing
+Work through the TODOs and we will cover these in the next branch.
 
 ---
 
-## Step One
+## Mobile Development
 
-#### Introduction to Dart
-
-Let's start by going through some of the basics of the Dart language, what it is for and what it does.
-
-NOTE: This is less of an introduction, but more to Flutter and resources for the language will be highlighted here.
+Here, we focus on Android mainly becuase we can develop on OSX, Linux or Windows. If you want to build for iOS then you **must** use a Mac. In this workshop, I will provide iOS examples and builds on my machine but feel free to give it a go if you have one.
 
 ---
 
-## Dart - Why?
+## Command Line
 
-Dart is a `strongly-typed` language originally developed to replace JavaScript, it has now progressed to support mobile apps and is now also supported on the server.
-
----
-
-## A Program in Dart
-
-```Dart
-void main() {
-  for (int i = 0; i <  10; i++) {
-    print(' The counter is ${i}');
-  }
-}
-```
+The flutter command line tool has some key functionality:
+* `flutter doctor` - Make sure flutter has been installed and is working on your system
+* `flutter clean` - Got a problem? Always run this first!
+* `flutter build` - Build commands for your apps
+* `flutter run` - Run the app on the connected device (physical or virtual)
+* `flutter test` - Run all the tests on your app
 
 ---
 
-## Easy, right?
+## IDE
 
-You may recognise a lot of this, but let's go through some basics.
+Flutter and Dart work in almost every text editor or IDE with plugins you can find. However, I recommend Visual Studio Code because of the awesome plugin support. Android Studio or Jetbrains are also great options so go with what you know.
 
-* All programs need a `main` function.
-* Types for variables are expected, but Dart can infer types.
-* This looks a lot like other compiled languages, right?
+For this workshop, let's use Visual Studio Code and add the `flutter` plugin.
 
----
-
-### Let's get started!
-
-1. Open the `ex_one.dart`, run it with `dart ex_one.dart`
-2. Complete the `TODOS` in the file
-3. When done, commit your work and `git checkout step_two`
-
-N.B. Want help? Check out https://www.dartlang.org/guides/language/language-tour
-
-
-
-
-
+We have 10 mins to set it all up and then we can get FLUTTERED!

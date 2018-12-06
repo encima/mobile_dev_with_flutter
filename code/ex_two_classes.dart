@@ -4,18 +4,26 @@ class Developer {
 
   Developer(num e, num d) {
     this.energyLevel = e;
-    // TODO 1 set the distractions
+    this.distractions = d;
   }
 
   String addDistraction(int d) {
     this.distractions += d;
-    // TODO 2 set the  energy level to be the opposite of the distractions
+    this.energyLevel -= d;
     bool depleted = this.checkEnergy();
-    // TODO 4 Return a string if they have energy or none left
+    if (depleted) {
+      return "Don't make me work in a coffee shop";
+    } else {
+      return "Things are going surprisingly well, please bother me";
+    }
   }
 
-  void checkEnergy() {
-    // TODO 3 check if energy is above 0 (or threshold) and return true or false
+  bool checkEnergy() {
+    if (this.energyLevel < 5) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 
@@ -23,6 +31,6 @@ class Developer {
 
 void main(List<String> args) {
   var d =  new Developer(100, 0);
-  d.addDistraction(80);
-  // TODO 5 print the returned string
+  print(d.addDistraction(80));
+  print(d.addDistraction(40));
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'member_model.dart';
+
 void main() {
   runApp(new MembersApp());
 }
@@ -31,7 +33,8 @@ class BasicHomePage extends StatefulWidget {
 
 class BasicHomePageState extends State<BasicHomePage> {
   
-    final List names = ['Juarez', 'Mandy', 'Bart', 'Susie', 'Pippie', 'Gavin'];
+    final List names = []
+      ..add(Member('Patrice', 'Livin life and takin name', 'https://instagram.com/i_hate_instagram', []));
     String currentName = '';
     final rng = new Random();
     
@@ -47,7 +50,7 @@ class BasicHomePageState extends State<BasicHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text('We are gonna add some peeps!'),
-              Text(currentName)
+              MemberInfoCard(member: names[0])
             ]
           )
         ),
@@ -64,4 +67,28 @@ class BasicHomePageState extends State<BasicHomePage> {
       
     }
 
+}
+
+class MemberInfoCard extends StatefulWidget {
+  final Member member;
+  
+ 
+  MemberInfoCard({Key key, this.member}) : super(key: key);
+
+  @override
+  MemberInfoState createState() => MemberInfoState();
+}
+
+class MemberInfoState extends State<MemberInfoCard> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  
+  Widget build(context) {
+    // We use the widget variable to access the parent widget that owns the state
+    return Text(widget.member.name);
+  }
 }

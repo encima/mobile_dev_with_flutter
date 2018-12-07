@@ -40,9 +40,11 @@ This will span across the rest of the exercises and we will code it together fro
 
 To understand state, we need to understand `immutability`. 
 
+---
 
-@snap[midpoint fragment]
+@snap[east fragment]
 * Mutable
+
 ```
 var hobbies = 'crying in the shower';
 hobbies = 'chilling with my peeps';
@@ -50,8 +52,9 @@ hobbies = 'chilling with my peeps';
 ```
 @snapend
 
-@snap[south fragment]
+@snap[west fragment]
 * Immutable
+
 ```
 var favouriteFood = 'bibimbap';
 favoureiteFood = 'doritos mixed with pringles and covered in cheap cheese';

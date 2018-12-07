@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       ),
       // TODO 1 change the title here to another string
       // TODO 2 set the title value using the variable above
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: title),
     );
   }
 }
@@ -62,6 +62,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
+  void initState() {
+      
+      super.initState();
+    }
+
+  @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
@@ -93,11 +99,11 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Text(
               // TODO 3 Use the Dart docs to change the THIS to the value of the counter
-              'You have pushed the button this many times:',
+              'You have pushed the button $_counter times:',
             ),
             Text(
               '$_counter',
@@ -109,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: Icon(Icons.add),
+        child: Icon(Icons.add_circle),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

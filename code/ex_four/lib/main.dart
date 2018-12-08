@@ -2,25 +2,22 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 import 'member_model.dart';
+import 'member_page.dart';
 
 void main() {
   runApp(new MembersApp());
 }
 
-
-
 class MembersApp extends StatelessWidget {
-	
-	final String _title = 'Women++';
+  final String _title = 'Women++';
 
-	Widget build(context) {
-		// Pass the text down to another widget
-		return new MaterialApp(
-      title: _title,
-      theme: ThemeData.light(),
-      home: BasicHomePage(title: _title)
-		);
-	}
+  Widget build(context) {
+    // Pass the text down to another widget
+    return new MaterialApp(
+        title: _title,
+        theme: ThemeData.light(),
+        home: BasicHomePage(title: _title));
+  }
 }
 
 class BasicHomePage extends StatefulWidget {
@@ -32,39 +29,112 @@ class BasicHomePage extends StatefulWidget {
 }
 
 class BasicHomePageState extends State<BasicHomePage> {
-  
-    final List names = []
-      ..add(Member('Patrice', 'Livin life and takin name', 'https://instagram.com/i_hate_instagram', []));
-    String currentName = '';
-    final rng = new Random();
-    
-    @override
-    void initState() {
-      super.initState();
-    }
+  final List<Member> names = []
+    ..add(Member('Patrice', 'Livin life and takin name',
+        'https://instagram.com/i_hate_instagram', []))
+    ..add(Member(
+        'Gabby', 'Sup peeps', 'https://instagram.com/i_hate_instagram', []))
+    ..add(Member('Malcom', 'Not Always in the Middle',
+        'https://instagram.com/i_hate_instagram', []))
+    ..add(Member('Emmenthal', 'No Cheesy Lines',
+        'https://instagram.com/i_hate_instagram', []));
+  String currentName = '';
+  final rng = new Random();
 
-    Widget build(context) {
-      return Scaffold(
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Widget build(context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Women++'),
+      ),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('We are gonna add some peeps!'),
-              MemberInfoCard(member: names[0])
-            ]
-          )
+          child: MemberList(names),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             setState(() {
-              currentName = names[rng.nextInt(names.length - 1)];              
+              currentName = names[rng.nextInt(names.length - 1)].name;              
             });
           },
           tooltip: 'New Name',
           child: Icon(Icons.new_releases)
         )
-      );
-      
-    }
+);
+  }
+}
 
+class MemberInfoCard extends StatefulWidget {
+  final Member member;
+
+  MemberInfoCard({Key key, this.member}) : super(key: key);
+
+  @override
+  MemberInfoState createState() => MemberInfoState();
+}
+
+class MemberInfoState extends State<MemberInfoCard> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Widget build(context) {
+    // We use the widget variable to access the parent widget that owns the state
+    return InkWell(
+      // onTap is a callback that will be triggered when tapped.
+      onTap: showMemberPage,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        child: Container(
+          height: 115.0,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Text(widget.member.name,
+                  style: Theme.of(context).textTheme.headline),
+              Text(widget.member.site,
+                  style: Theme.of(context).textTheme.subhead),
+              Row(
+                children: <Widget>[],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  showMemberPage() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        // builder methods always take context!
+        builder: (context) {
+          return MemberPage(widget.member);
+        },
+      ),
+    );
+  }
+}
+
+class MemberList extends StatelessWidget {
+  final List<Member> members;
+
+  MemberList(this.members);
+
+  @override
+  Widget build(BuildContext build) {
+    return ListView.builder(
+      // Must have an item count equal to the number of items!
+      itemCount: members.length,
+      // A callback that will return a widget.
+      itemBuilder: (context, index) {
+        return MemberInfoCard(member: members[index]);
+      },
+    );
+  }
 }

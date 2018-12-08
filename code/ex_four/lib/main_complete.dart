@@ -7,20 +7,16 @@ void main() {
   runApp(new MembersApp());
 }
 
-
-
 class MembersApp extends StatelessWidget {
-	
-	final String _title = 'Women++';
+  final String _title = 'Women++';
 
-	Widget build(context) {
-		// Pass the text down to another widget
-		return new MaterialApp(
-      title: _title,
-      theme: ThemeData.light(),
-      home: BasicHomePage(title: _title)
-		);
-	}
+  Widget build(context) {
+    // Pass the text down to another widget
+    return new MaterialApp(
+        title: _title,
+        theme: ThemeData.light(),
+        home: BasicHomePage(title: _title));
+  }
 }
 
 class BasicHomePage extends StatefulWidget {
@@ -32,47 +28,44 @@ class BasicHomePage extends StatefulWidget {
 }
 
 class BasicHomePageState extends State<BasicHomePage> {
-  
-    final List names = []
-      ..add(Member('Patrice', 'Livin life and takin name', 'https://instagram.com/i_hate_instagram', []));
-    String currentName = '';
-    final rng = new Random();
-    
-    @override
-    void initState() {
-      super.initState();
-    }
+  final List names = []
+    ..add(Member('Patrice', 'Livin life and takin name',
+        'https://instagram.com/i_hate_instagram', []))
+    ..add(Member('Patrice', 'Livin life and takin name',
+        'https://instagram.com/i_hate_instagram', []))
+    ..add(Member('Patrice', 'Livin life and takin name',
+        'https://instagram.com/i_hate_instagram', []))
+    ..add(Member('Patrice', 'Livin life and takin name',
+        'https://instagram.com/i_hate_instagram', []));
+  String currentName = '';
+  final rng = new Random();
 
-    Widget build(context) {
-      return Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('We are gonna add some peeps!'),
-              MemberInfoCard(member: names[0])
-            ]
-          )
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  Widget build(context) {
+    return Scaffold(
+        body: Container(
+          child: Center(
+            child: MemberList(names),
+          ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            setState(() {
-              currentName = names[rng.nextInt(names.length - 1)];              
-            });
-          },
-          tooltip: 'New Name',
-          child: Icon(Icons.new_releases)
-        )
-      );
-      
-    }
-
+            onPressed: () {
+              setState(() {
+                currentName = names[rng.nextInt(names.length - 1)];
+              });
+            },
+            tooltip: 'New Name',
+            child: Icon(Icons.new_releases)));
+  }
 }
 
 class MemberInfoCard extends StatefulWidget {
   final Member member;
-  
- 
+
   MemberInfoCard({Key key, this.member}) : super(key: key);
 
   @override
@@ -80,15 +73,32 @@ class MemberInfoCard extends StatefulWidget {
 }
 
 class MemberInfoState extends State<MemberInfoCard> {
-
   @override
   void initState() {
     super.initState();
   }
 
-  
   Widget build(context) {
     // We use the widget variable to access the parent widget that owns the state
     return Text(widget.member.name);
+  }
+}
+
+class MemberList extends StatelessWidget {
+  final List<Member> members;
+
+  MemberList(this.members);
+
+  @override
+  Widget build(BuildContext build) {
+    return ListView.builder(
+      // Must have an item count equal to the number of items!
+      itemCount: members.length,
+      // A callback that will return a widget.
+      itemBuilder: (context, index) {
+        // In our case, a DogCard for each doggo.
+        return MemberInfoCard(member: members[index]);
+      },
+    );
   }
 }

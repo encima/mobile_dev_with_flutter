@@ -20,6 +20,13 @@ class MemberState extends State<MemberPage> {
         backgroundColor: Colors.black87,
         title: Text('Meet ${widget.m.name}'),
       ),
+      body: Padding(
+        child: Stack(
+          children: <Widget>[
+            Text(widget.m.bio)
+          ],
+        ),
+      ),
     );
   }
 }

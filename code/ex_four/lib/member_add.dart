@@ -18,15 +18,17 @@ class MemberAddState extends State<MemberAddPage> {
         appBar: AppBar(title: Text('Add a new Member')),
         body: Container(
             child: Column(children: [
-          TextField(decoration: InputDecoration(labelText: 'Member Name')),
-          TextField(decoration: InputDecoration(labelText: 'Member Bio')),
-          TextField(decoration: InputDecoration(labelText: 'Member Website'))
+          TextField(decoration: InputDecoration(labelText: 'Member Name'), controller: nameController,),
+          TextField(decoration: InputDecoration(labelText: 'Member Bio'), controller: bioController,),
+          TextField(decoration: InputDecoration(labelText: 'Member Website'), controller: siteController,),
+          RaisedButton(onPressed: addMember, child: Text('Add'))
         ])));
   }
 
   void addMember() {
     //TODO check there have been details entered
-    var m = Member(nameController.text, bioController.text, siteController.text, []);
+    var m = Member(
+        nameController.text, bioController.text, siteController.text, []);
     Navigator.of(context).pop(m);
   }
 }

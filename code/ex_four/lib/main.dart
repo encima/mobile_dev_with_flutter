@@ -69,6 +69,8 @@ class BasicHomePageState extends State<BasicHomePage> {
         },
       ),
     );
+    print(newMember.name);
+    names.add(newMember);
   }
 }
 

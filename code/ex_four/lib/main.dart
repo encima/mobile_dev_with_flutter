@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'member_model.dart';
 import 'member_page.dart';
+import 'member_add.dart';
 
 void main() {
   runApp(new MembersApp());
@@ -48,22 +49,26 @@ class BasicHomePageState extends State<BasicHomePage> {
 
   Widget build(context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Women++'),
-      ),
+        appBar: AppBar(
+          title: Text('Women++'),
+        ),
         body: Center(
           child: MemberList(names),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            setState(() {
-              currentName = names[rng.nextInt(names.length - 1)].name;              
-            });
-          },
-          tooltip: 'New Name',
-          child: Icon(Icons.new_releases)
-        )
-);
+            onPressed: addMember,
+            tooltip: 'New Name',
+            child: Icon(Icons.new_releases)));
+  }
+
+  Future addMember() async {
+    Member newMember = await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          return MemberAddPage();
+        },
+      ),
+    );
   }
 }
 

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 import 'member_model.dart';
+import 'member_page.dart';
+import 'member_add.dart';
 
 void main() {
   runApp(new MembersApp());
@@ -28,14 +30,14 @@ class BasicHomePage extends StatefulWidget {
 }
 
 class BasicHomePageState extends State<BasicHomePage> {
-  final List names = []
+  final List<Member> names = []
     ..add(Member('Patrice', 'Livin life and takin name',
         'https://instagram.com/i_hate_instagram', []))
-    ..add(Member('Patrice', 'Livin life and takin name',
+    ..add(Member(
+        'Gabby', 'Sup peeps', 'https://instagram.com/i_hate_instagram', []))
+    ..add(Member('Malcom', 'Not Always in the Middle',
         'https://instagram.com/i_hate_instagram', []))
-    ..add(Member('Patrice', 'Livin life and takin name',
-        'https://instagram.com/i_hate_instagram', []))
-    ..add(Member('Patrice', 'Livin life and takin name',
+    ..add(Member('Emmenthal', 'No Cheesy Lines',
         'https://instagram.com/i_hate_instagram', []));
   String currentName = '';
   final rng = new Random();
@@ -47,19 +49,28 @@ class BasicHomePageState extends State<BasicHomePage> {
 
   Widget build(context) {
     return Scaffold(
-        body: Container(
-          child: Center(
-            child: MemberList(names),
-          ),
+        appBar: AppBar(
+          title: Text('Women++'),
+        ),
+        body: Center(
+          child: MemberList(names),
         ),
         floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              setState(() {
-                currentName = names[rng.nextInt(names.length - 1)];
-              });
-            },
+            onPressed: addMember,
             tooltip: 'New Name',
             child: Icon(Icons.new_releases)));
+  }
+
+  Future addMember() async {
+    Member newMember = await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          return MemberAddPage();
+        },
+      ),
+    );
+    print(newMember.name);
+    names.add(newMember);
   }
 }
 
@@ -80,7 +91,40 @@ class MemberInfoState extends State<MemberInfoCard> {
 
   Widget build(context) {
     // We use the widget variable to access the parent widget that owns the state
-    return Text(widget.member.name);
+    return InkWell(
+      // onTap is a callback that will be triggered when tapped.
+      onTap: showMemberPage,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        child: Container(
+          height: 115.0,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Text(widget.member.name,
+                  style: Theme.of(context).textTheme.headline),
+              Text(widget.member.site,
+                  style: Theme.of(context).textTheme.subhead),
+              Row(
+                children: <Widget>[],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  showMemberPage() {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        // builder methods always take context!
+        builder: (context) {
+          return MemberPage(widget.member);
+        },
+      ),
+    );
   }
 }
 
@@ -96,7 +140,6 @@ class MemberList extends StatelessWidget {
       itemCount: members.length,
       // A callback that will return a widget.
       itemBuilder: (context, index) {
-        // In our case, a DogCard for each doggo.
         return MemberInfoCard(member: members[index]);
       },
     );

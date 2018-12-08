@@ -56,22 +56,12 @@ class BasicHomePageState extends State<BasicHomePage> {
           child: MemberList(names),
         ),
         floatingActionButton: FloatingActionButton(
-            onPressed: addMember,
-            tooltip: 'New Name',
+            onPressed: addMember, //TODO add method to react to listener
+            tooltip: 'New Name', //TODO change icon to add
             child: Icon(Icons.new_releases)));
   }
 
-  Future addMember() async {
-    Member newMember = await Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) {
-          return MemberAddPage();
-        },
-      ),
-    );
-    print(newMember.name);
-    names.add(newMember);
-  }
+  
 }
 
 class MemberInfoCard extends StatefulWidget {

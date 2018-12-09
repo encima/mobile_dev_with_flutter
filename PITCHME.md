@@ -16,6 +16,8 @@ In short, this is a framework that allows you to create apps on both major platf
 
 It is. Flutter is a very new framework and Dart is a language with a lot of potential but is not yet a mainstream language.
 
+---
+
 ### So Why Learn for Beginners?
 
 While many larger companies have not yet heard of Flutter (or Dart), it is a good option for startups with not so much (wo)manpower.

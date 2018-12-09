@@ -15,18 +15,15 @@ class MemberPage extends StatefulWidget {
 class MemberState extends State<MemberPage> {
   Widget build(context) {
     return Scaffold(
-      backgroundColor: Colors.black87,
       appBar: AppBar(
         backgroundColor: Colors.black87,
         title: Text('Meet ${widget.m.name}'),
       ),
-      body: Padding(
-        child: Stack(
+      body: Stack(
           children: <Widget>[
             Text(widget.m.bio)
           ],
         ),
-      ),
     );
   }
 }

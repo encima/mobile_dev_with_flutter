@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'dart:math';
+
 
 import 'member_model.dart';
 import 'member_page.dart';
@@ -30,6 +32,8 @@ class BasicHomePage extends StatefulWidget {
 }
 
 class BasicHomePageState extends State<BasicHomePage> {
+  FlutterLocalNotificationsPlugin lnp;
+
   final List<Member> names = []
     ..add(Member('Patrice', 'Livin life and takin name',
         'https://instagram.com/i_hate_instagram', []))
@@ -45,6 +49,16 @@ class BasicHomePageState extends State<BasicHomePage> {
   @override
   void initState() {
     super.initState();
+
+    lnp = new FlutterLocalNotificationsPlugin();
+    var initializationSettingsAndroid =
+        new AndroidInitializationSettings('app_icon');
+    var initializationSettingsIOS = new IOSInitializationSettings();
+    var initializationSettings = new InitializationSettings(
+        initializationSettingsAndroid, initializationSettingsIOS);
+    lnp = new FlutterLocalNotificationsPlugin();
+    lnp.initialize(initializationSettings,
+        onSelectNotification: onSelectNotification);
   }
 
   Widget build(context) {
@@ -61,6 +75,23 @@ class BasicHomePageState extends State<BasicHomePage> {
             child: Icon(Icons.new_releases)));
   }
 
+  Future onSelectNotification(String payload) async {
+    if (payload != null) {
+      debugPrint('notification payload: ' + payload);
+    }
+    Member found;
+    for (var i = 0; i < names.length; i++) {
+      if (payload.toLowerCase() == names[i].name.toLowerCase()) {
+        found = names[i];
+      }
+    }
+    print(found.name);
+    await Navigator.push(
+      context,
+      new MaterialPageRoute(builder: (context) => new MemberPage(found)),
+    );
+  }
+
   Future addMember() async {
     Member newMember = await Navigator.of(context).push(
       MaterialPageRoute(
@@ -69,8 +100,17 @@ class BasicHomePageState extends State<BasicHomePage> {
         },
       ),
     );
-    print(newMember.name);
+    var androidPlatformChannelSpecifics = new AndroidNotificationDetails(
+    'womenplusplus', 'womenplusplus', 'womenplusplus',
+    importance: Importance.Max, priority: Priority.High);
+    var iOSPlatformChannelSpecifics = new IOSNotificationDetails();
+    var platformChannelSpecifics = new NotificationDetails(
+      androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+    
     names.add(newMember);
+      await lnp.show(
+        0, 'New Member Added', 'Click Here to See', platformChannelSpecifics,
+        payload: newMember.name);
   }
 }
 
@@ -84,6 +124,7 @@ class MemberInfoCard extends StatefulWidget {
 }
 
 class MemberInfoState extends State<MemberInfoCard> {
+
   @override
   void initState() {
     super.initState();

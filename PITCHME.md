@@ -69,7 +69,7 @@ Future onSelectNotification(String payload) async {
 
 ## Done?
 
-We have built an app with a lot of basic functionality in a short time. 
+We have built an app with a lot of functionality in a short time. 
 
 Not just an Android app, but iOS as well (with web and Desktop support coming)
 
@@ -89,7 +89,3 @@ Not just an Android app, but iOS as well (with web and Desktop support coming)
 ## Questions?
 
 ![questions](https://media.giphy.com/media/DUrdT2xEmJWbS/giphy.gif)
-
-
-
-## Step Eight

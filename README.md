@@ -1,14 +1,14 @@
-Mobile Development with Flutter
+# Mobile Development with Flutter
 
-What?
+## What?
 
 This is a quick introduction to developing mobile apps using the Dart programming language and the Flutter toolkit. 
 
-How?
+## How?
 
 Why with this repo, of course! Use this file to start off and each steo will be explained, along with the software requirements and tasks to help you learn.
 
-When?
+## When?
 
 For those living in Zuerich, an event will be held on **Sunday the 9th of December 2018**, bring yourself and a laptop, you can sign up and find more details: https://zurich.impacthub.ch/de/event/mobile-development-flutter-beginners/
 
@@ -18,7 +18,7 @@ You can also join the slack room: [https://flutterplusplus.slack.com](https://fl
 
 ---
 
-What Do You Need?
+## What Do You Need?
 
 1. Dart lang installed on your system
 2. Git installed on your system
@@ -29,7 +29,7 @@ What Do You Need?
 
 Install these things and let's move on!
 
-Using this repo:
+### Using this repo:
 
 * This repository has a number of branches, each one is a step of the workshop. This branch, called the `master`, is the default branch and the one you will see when you clone it onto your local system.
 
@@ -38,7 +38,13 @@ Using this repo:
 * When it has been forked, you can clone it. For example, like this:
 `git clone git@github.com:<USERNAME>/<REPO>.git`
 
-Ready to begin?
+### RECOMMENDATION
+
+Not comfortable with git? Don't have a github account? No worries. It is best then to clone **2** versions of this repo. 
+1. For you to edit and make changes to
+2. To follow along with me and checkout next branches, read presentations etc
+
+# Ready to begin?
 
 Let's go. Let us start by learning a bit about the Dart language. If you get stuck at any point, ask using the medium of your choice and/or check out the next branch where you will see some answers.
 
